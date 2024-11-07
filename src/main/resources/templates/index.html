@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+	layout:decorate="~{layout}">
+
+	
+    <div layout:fragment="content">
+		<main class="mt-5">
+		      <div class="container">
+		        <div class="row">
+		          
+				  <div th:each="user : ${users}" class="col-md-3">
+		            <div class="card">
+		              <div class="card-body">
+		                <h3 class="card-title">User Details</h3>
+		                <p th:text="${user.name}"></p>
+		                <p th:text="${user.email}"></p>                
+		                <p th:text="${user.password}"></p>                
+				          <div  class="d-grid">
+							 <button class="btn btn-dark" data-bs-toggle="collapse"
+							 th:data-bs-target="${'#pwd-'+user.id}">reveal password</button>
+						  </div> 
+						  <div class="collapse mt-3 text-center fs-5"  th:id="${'pwd-'+user.id}">
+							<p th:text="${user.confirmPassword}"></p>
+						  </div>               
+		              </div>
+		            </div>
+		          </div> 
+		          
+		          
+		        </div>
+		      </div>
+		    </main>
+			
+	</div>
+
+
+</html>

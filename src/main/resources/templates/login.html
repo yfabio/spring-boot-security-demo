@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout}">
+
+
+<div layout:fragment="content">
+	<main>
+		<div class="container mt-5">
+			<div class="row">
+				<div class="col-md-6 offset-md-3">
+					<h1 class="display-4 text-center">Login</h1>
+					<div class="feedback-error alert alert-danger" role="alert" th:if="${!#strings.isEmpty(alertMessage)}"
+					 th:text="${alertMessage}">						
+					</div>
+					<form id="form-login" th:action="@{/login}" method="post">
+						<div class="mb-3">
+							<label for="email" class="form-label">Email</label>
+							<input type="email" id="email" placeholder="Email" name="username" class="form-control" />
+						</div>
+						<div class="mb-3">
+							<label for="password" class="form-label">Password</label>
+							<input type="password" id="password" placeholder="password" name="password"
+								class="form-control" />
+						</div>
+						<div class="mb-3 d-grid">
+							<button type="submit" class="btn btn-primary fw-bold">
+								Login
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</main>
+</div>
+
+</html>

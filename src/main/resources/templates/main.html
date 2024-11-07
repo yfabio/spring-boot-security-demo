@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5" layout:decorate="~{layout}">
+
+
+
+
+<div layout:fragment="content">
+	<main>
+		<div class="container p-4">
+			<h1>Main Page</h1>
+			<hr>
+			<p th:text="${username}"></p>
+			<div>
+				<h2>roles</h2>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item" th:each="item : ${roles}"><span th:text="${item}"></span></li>
+				</ul>
+			</div>
+
+			<div sec:authorize="hasRole('ROLE_ADMIN')">
+				<p>Your are an admin!</p>
+			</div>
+
+			<div sec:authorize="hasRole('ROLE_USER')">
+				<p>Your are an user!</p>
+			</div>
+
+			<hr>
+
+			<div sec:authorize="isAuthenticated()">
+				<p>Your are authenticated!</p>
+			</div>
+
+		</div>
+	</main>
+</div>
+
+
+
+</html>

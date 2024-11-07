@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout}">
+
+
+<div layout:fragment="content">
+	<main>
+		<div class="container mt-5">
+			<div class="row">
+				<div class="col-md-6 offset-md-3">
+					<h1 class="display-4 text-center">Register</h1>
+					<form id="form-register" th:action="@{/new-user}" method="post" th:object="${user}">
+						<div class="form-group mb-3">
+							<label for="name" class="form-label">Name</label>
+							<input type="text" th:field="*{name}" id="name"  placeholder="Name" class="form-control" />	
+							<div th:if="${#fields.hasErrors('name')}" class="feedback-error text-danger" th:errors="*{name}"></div>													
+						</div>
+						<div class="form-group mb-3">
+							<label for="email" class="form-label">Email</label>
+							<input type="email" th:field="*{email}" id="email"  placeholder="Email" class="form-control" />
+							<div th:if="${#fields.hasErrors('email')}" class="feedback-error text-danger" th:errors="*{email}"></div>								
+						</div>
+						<div class="form-group mb-3">
+							<label for="password" class="form-label">Password</label>
+							<input type="password" th:field="*{password}" id="password"  placeholder="password"
+								class="form-control" />
+							<div th:if="${#fields.hasErrors('password')}"  th:errors="*{password}" class="feedback-error text-danger"></div>	
+								
+						</div>
+						<div class="form-group mb-3">
+							<label for="confirmPassword" class="form-label">Confirm Password</label>
+							<input type="password" th:field="*{confirmPassword}" id="confirmPassword"
+								placeholder="Repeat Password"  class="form-control" />
+							<div th:if="${#fields.hasErrors('confirmPassword')}"  th:errors="*{confirmPassword}" class="feedback-error text-danger"></div>									
+						</div>
+						<div class="form-group mb-3">
+							<select class="form-select" th:field="*{roles}" multiple>
+								<option th:each="role : ${values}" th:value="${role.id}" th:text="${role.role}">
+								</option>
+							</select>														
+						</div>
+						<div class="mb-3 d-grid">
+							<button type="submit" class="btn btn-primary fw-bold">
+								register
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</main>	
+</div>
+
+
+</html>
