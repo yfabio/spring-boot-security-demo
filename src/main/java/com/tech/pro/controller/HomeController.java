@@ -20,12 +20,12 @@ public class HomeController {
 	
 	private UserService userService;
 	
-	private PwdBuffer starterRoles;
+	private PwdBuffer pwdBuffer;
 
 	@RequestMapping(value = { "/home", "/" })
 	public String home(Model model) {
 		List<User> users = userService.getAllUsers().stream().map(user -> {
-			user.setConfirmPassword(starterRoles.get(user.getName()));
+			user.setConfirmPassword(pwdBuffer.get(user.getName()));
 			return user;
 		}).collect(Collectors.toCollection(ArrayList::new));
 
