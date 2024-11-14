@@ -23,7 +23,7 @@ public class RegisterController {
 	
 	private UserService userService;
 	
-	private PwdBuffer starterRoles;
+	private PwdBuffer pwdBuffer;
 
 	@RequestMapping("/register")
 	public String register(Model model) {
@@ -32,7 +32,7 @@ public class RegisterController {
 		return "register";
 	}
 
-	@RequestMapping(value = "/new-user", method = {RequestMethod.POST})
+	@RequestMapping(value = "/new-user", method = RequestMethod.POST)
 	public String registerUser(@Valid @ModelAttribute("user") User user, Errors errors, Model model) {
 
 		if (errors.hasErrors() || !user.doesPasswordMatch()) {			
@@ -41,7 +41,7 @@ public class RegisterController {
 			errors.rejectValue("confirmPassword", null,"password must match"); 
 			return "register";
 		} else {
-			starterRoles.save(user.getName(), user.getPassword());
+			pwdBuffer.save(user.getName(), user.getPassword());
 			userService.hashPassword(user);
 		}
 
